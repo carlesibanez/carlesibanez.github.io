@@ -1,0 +1,36 @@
+{{ define "main" }}
+<div class="container">
+    <section id="projects-page" class="projects-page">
+        <h1>Projects</h1>
+        <div class="projects-container">
+        {{ range .Pages }}
+        <a href="{{ .Permalink }}" class="project-card-link">
+            <div class="project-card">
+                <a href="{{ .Permalink }}" class="project-card-link">
+                    <h2>{{ .Title }}</h2>
+                </a>
+                <a href="{{ .Params.github }}" class="github-icon" target="_blank">
+                    <i class="fa-brands fa-github"></i> <!-- GitHub icon -->
+                </a>
+                <div class="tags">
+                {{ range .Params.tags }}
+                    <span class="tag">{{ . }}</span>
+                {{ end }}
+                </div>
+                <p class="description">{{ .Params.description }}</p>
+                <div class="meta-info">
+                <span class="date">
+                    <i class="fas fa-calendar-alt"></i> {{ .Date.Format "Jan 2, 2006" }}
+                </span>
+                <span class="reading-time">
+                    <i class="fas fa-clock"></i> {{ .ReadingTime }} min read
+                </span>
+                </div>
+            </div>
+        </a>
+        {{ end }}
+        </div>
+    </section>
+</div>
+  
+{{ end }}

@@ -1,0 +1,1005 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+section {
+    scroll-margin-top: 80px; /* Adjust this to match your navbar's height */
+    padding: 30px 0;
+}
+
+.section-title {
+    font-size: 4em;
+    text-align: center;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-family: 'Fraunces';
+    font-weight: 700;
+}
+
+/* Wrapper for page content to control width */
+.container {
+    max-width: 1200px;
+    width: 83.33%; /* Adjust this percentage for the desired content width */
+    margin: 0 auto; /* Centers the container within the viewport */
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    padding: 10px 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    transition: background-color 0.3s ease;
+}
+
+/* Change the background color of the navbar on scroll */
+.navbar.transparent {
+    background-color: transparent;
+}
+
+/* Contain navbar items inside the same width as the page content */
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: flex;
+    align-self: center;
+}
+
+.navbar ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.navbar ul li a {
+    position: relative;
+    color: #f5f5f5;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar.transparent ul li a {
+    color: #333;
+}
+
+.navbar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.navbar ul li a:hover::after {
+    width: 100%;
+}
+
+.navbar ul li a:hover {
+    color: #ddd;
+}
+
+.navbar ul li a.active::after {
+    width: 100%;
+}
+
+.navbar ul li a.active {
+    color: white;
+}
+
+.home-link {
+    margin-left: 20px; /* Keeps the home link on the left side */
+}
+
+.navbar .home-link a {
+    color: #f5f5f5;;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.navbar.transparent .home-link a {
+    color: #333;
+}
+
+/* Dots Navigation Style */
+.dots-navigation {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 15px 0;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+    background-color: #90af99;
+}
+
+.dot.active {
+    background-color: #90af99;
+}
+
+.dot::after {
+    content: attr(data-section);
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #333;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.dot:hover::after, .dot.active::after {
+    opacity: 1;
+}
+
+/* Hero Section Styles */
+.fullscreen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    text-align: center;
+    background-color: #f4f4f4; /* Adjust background color as desired */
+}
+
+.intro-photo {
+    width: 200;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.intro-content h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+#typing-text {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 10px;
+    min-height: 40px; /* Adjust for animation */
+}
+
+.cv-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #90af99;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cv-button:hover {
+    background-color: #5c7062;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-arrow {
+    width: 40px;  /* Adjust the size as needed */
+    height: auto;
+    animation: bounce 4s infinite;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(10px); /* Adjust the bounce height */
+    }
+    60% {
+        transform: translateY(5px);
+    }
+}
+
+
+/* Intro Section Styles */
+.intro-section {
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+}
+
+.intro-section .container {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    border-radius: 10px;
+    width: 83.33%; 
+}
+
+.photo img {
+    width: 20vw;
+    max-width: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(20%); /* Gradient effect */
+}
+
+.intro-text {
+    margin-left: 70px;
+}
+
+.intro-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.social-projects-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns content to the left */
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-right: 30px;
+}
+
+.social-links {
+    display: flex;
+    align-items:center;
+}
+
+/* Button for: github, linkedin, email  */
+.button {
+    margin-right: 15px;
+    transition: 0.1s ease;
+    transform: scale(1);
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+
+.projects-button {
+    margin-top: 0;
+}
+
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #90af99;
+    border: 2px solid #90af99;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.button-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #90af99;
+    z-index: -1;
+    transition: transform 0.4s ease;
+    transform: translateX(-100%);
+}
+
+.button-link:hover::before {
+    transform: translateX(0);
+}
+
+.button-link:hover {
+    color: white;
+    font-weight: bold;
+}
+
+
+/* Skills section */
+.skills-section {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    grid-gap: 20px;
+    width: 100%;
+}
+
+.skill {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 120px;
+}
+
+.skill-info {
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    top: 55px; 
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+}
+
+.skill:hover .skill-info {
+    opacity: 1;
+    transform: translateX(-50%) translateY(10px); /* Slight hover animation */
+}
+
+.skill img {
+    width: 80px;
+    height: 80px;
+    transition: transform 0.3s ease;
+}
+
+.skill:hover img {
+    transform: scale(1.1);
+}
+
+.skill-name {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    height: auto; 
+    width: 100%; 
+    text-align: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; 
+}
+
+.skill:hover .skill-name {
+    display: block;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+  
+.skill-description {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4em;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 1024px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr; /* 1 column for small screens */
+    }
+}
+
+/* Education Section */
+.education-section {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.degree {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.degree h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.degree p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin: 40px 0;
+}
+
+.certifications {
+    margin-top: 50px;
+}
+
+.certifications h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.certification-list {
+    display: flex;
+    justify-content: center; /* Center the badges horizontally */
+    gap: 20px; 
+}
+
+.certification-item {
+    display: flex;
+    align-items: center;
+}
+
+.certification-item img {
+    width: 80px;
+    margin-right: 10px;
+}
+
+/* Experience Section */
+ul {
+    padding-left: 30px; /* Adjust the value as needed */
+}
+
+li {
+    margin-bottom: 10px; /* Optional: Adds some space between list items */
+}
+
+.timeline {
+    position: relative;
+    margin: 50px 0;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #333;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    width: 45%;
+    padding: 20px;
+    position: relative;
+}
+
+.timeline-item.left {
+    left: 0;
+}
+
+.timeline-item.right {
+    left: 55%;
+}
+
+.timeline-logo {
+    position: absolute;
+    width: 70px; 
+    height: 70px;
+    top: 50%; /* Center it vertically on the timeline */
+    transform: translate(-50%, -50%); /* Adjust the position */
+    z-index: 10;
+}
+
+.timeline-item.left .timeline-logo {
+    left: 111%; /* Position the logo for the left-side items */
+}
+
+.timeline-item.right .timeline-logo {
+    left: -11%; /* Position the logo for the right-side items */
+}
+
+.timeline-logo img {
+    width: 100%;
+    height: auto; /* Make sure the image scales properly */
+    border-radius: 50%; /* Make the logo round if desired */
+    border: #252525 2px solid; /* Optional: Add a border */
+}
+
+.timeline-content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item:before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #333;
+    top: 0;
+    bottom: 0;
+}
+
+.timeline-item.left:before, .timeline-item.right:before {
+    content: '';
+    position: absolute;
+    width: 20%; /* Adjust width as needed */
+    height: 6px; /* Make the line horizontal */
+    background-color: #333;
+    top: 50%; /* Center the line vertically */
+    transform: translateY(-50%); /* Vertically align */
+    z-index: -1; /* Behind the content */
+}
+
+.timeline-item.left:before {
+    right: -11%;
+}
+
+.timeline-item.right:before {
+    left: -11%;
+}
+
+
+/* Call-to-action section styling */
+.cta-section {
+    text-align: center;
+    padding: 160px 0; 
+    background-color: #f4f4f9;
+}
+  
+.cta-container {
+    display: inline-block;
+}
+  
+/* Glowing button styling (larger, pill-shaped) */
+.glow-on-hover {
+    display: inline-block; /* Make it act like a button */
+    width: 350px; 
+    height: 80px; 
+    line-height: 80px; 
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 40px; /* Make it pill-shaped */
+    font-size: 1.5rem; 
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none; /* Remove underline for the link */
+    transition: transform 0.3s ease;
+}
+  
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 40px; /* Match pill shape */
+}
+  
+.glow-on-hover:active {
+    color: #000;
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 40px; /* Match pill shape */
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+  
+  
+/* Footer Styles */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%; /* Ensure it takes up full page width */
+    position: relative;
+    left: 0;
+    margin: auto auto 0;
+    z-index: 999;
+}
+
+.footer p {
+    margin: 10px 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.social-links {
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #90af99;
+}
+
+/* Made with Heart */
+.made-by {
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.heart {
+    color: darkgreen;
+    font-size: 1.1rem;
+}
+
+
+/* Back to Top Button (Icon) */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #90af99;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.back-to-top:hover {
+    background-color: #5c7062;
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.back-to-top:focus {
+    outline: none;
+}
+
+/* Hide the button until user scrolls down */
+.back-to-top.hidden {
+    display: none;
+}
+
+#back-to-top-img {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+}
+  
+
+/* Media Query to handle narrow screens */
+@media (max-width: 900px) {
+    section {
+        padding: 50px 0; /* Reduce padding on smaller screens */
+    }
+
+    .social-projects-container {
+        flex-direction: column; /* Stack social links and button vertically */
+        align-items: flex-start; /* Align everything to the left */
+    }
+    
+    .projects-button {
+        margin-left: 0; /* Align the button to the left */
+        margin-top: 20px; /* Add some space above the button */
+        align-self: flex-start;
+    }
+
+}
+
+/* Projects page layout */
+.projects-page {
+    padding: 100px 20px;
+    text-align: left;
+}
+
+.projects-page h1 {
+    font-size: 3.5rem;
+    margin-bottom: 50px;
+}
+
+.projects-page h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-family: 'Fraunces';
+}
+  
+.projects-container {
+    display: grid;
+    grid-gap: 30px;
+    justify-items: left;
+}
+
+.project-card {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.project-card-link {
+    text-decoration: none;
+    color: inherit; /* Inherit text color */
+}
+
+.project-card-link:hover .project-card {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+    transform: translateY(-5px); /* Lift effect on hover */
+    transition: all 0.3s ease;
+}
+  
+.tags {
+    margin-bottom: 15px;
+}
+  
+.tag {
+    display: inline-block;
+    background-color: #5c7062;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-size: 0.8rem;
+}
+  
+.description {
+    margin-bottom: 20px;
+    color: #666;
+}
+  
+.meta-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #999;
+}
+  
+.meta-info i {
+    margin-right: 5px;
+}
+  
+.github-icon {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 2.5rem;
+    color: #333;
+    z-index: 1;
+}
+  
+.github-icon:hover {
+    color: #90af99;
+}
+  
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    .projects-container {
+      grid-template-columns: 1fr; /* Single column for small screens */
+    }
+}
+
+
+/* Project Single Page */
+.project-page {
+    display: flex;
+    justify-content: space-between;
+    padding: 100px 20px;
+}
+
+.project-layout {
+    display: flex;
+    align-items: flex-start; /* Aligns the two sections at the top */
+    justify-content: space-between;
+    width: 100%;
+}
+
+.project-text {
+    width: 75%; /* Main content area */
+}
+
+.project-page header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.project-page header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    font-family: 'Fraunces';
+}
+
+.project-page header .github-icon {
+    font-size: 2.5rem;
+    color: #333;
+    position: relative;
+    margin-top: 0;
+    margin-bottom: auto;
+}
+
+.project-page header .github-icon:hover {
+    color: #90af99;
+}
+
+.meta-info {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.meta-info span {
+    margin-right: 20px;
+}
+
+.project-page .content {
+    line-height: 1.5;
+}
+
+.content p {
+    margin-bottom: 20px;
+}
+
+.project-toc {
+    width: 20%; /* TOC area */
+    padding-left: 10px;
+    position: sticky;
+    top: 80px;
+    border-left: 1px solid #ddd;
+}
+
+.project-toc h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.project-toc ul {
+    list-style: none; 
+    padding-left: 0; 
+}
+
+.project-toc ul li {
+    margin-bottom: 10px;
+}
+
+.project-toc ul li a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #333; /* Darker color for minimalistic style */
+    transition: color 0.3s ease; 
+}
+
+.project-toc ul li a:hover {
+    color: #5c7062; /* Highlight on hover */
+}
+
+/* Indent the subsections */
+.project-toc ul ul {
+    padding-left: 20px; 
+}

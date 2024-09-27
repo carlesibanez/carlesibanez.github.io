@@ -1,0 +1,26 @@
+baseURL: https://example.org/
+languageCode: en-us
+title: Carles Ibáñez - Portfolio
+
+params:
+  email: carles.ibanez.trullen@gmail.com
+  github_url: https://github.com/carlesibanez
+  linkedin_url: https://www.linkedin.com/in/carles-ibanez-trullen/
+
+markup:
+  tableOfContents:
+    endLevel: 3
+    ordered: false
+    startLevel: 1
+
+
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 1
+    - identifier: projects
+      name: Projects
+      url: /projects/
+      weight: 2

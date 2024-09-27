@@ -1,0 +1,43 @@
+{{ define "main" }}
+<div class="container">
+    <section class="project-page">
+        <div class="project-layout">
+            <!-- Main Content Area -->
+            <div class="project-text">
+                <header>
+                    <h1>{{ .Title }}</h1>
+                    <a href="{{ .Params.github }}" class="github-icon" target="_blank">
+                        <i class="fa-brands fa-github"></i> <!-- GitHub icon -->
+                    </a>
+                </header>
+
+                <div class="meta-info">
+                    <span class="date">
+                        <i class="fas fa-calendar-alt"></i> {{ .Date.Format "Jan 2, 2006" }}
+                    </span>
+                    <span class="reading-time">
+                        <i class="fas fa-clock"></i> {{ .ReadingTime }} min read
+                    </span>
+                </div>
+                <br>
+                <div class="tags">
+                    {{ range .Params.tags }}
+                        <span class="tag">{{ . }}</span>
+                    {{ end }}
+                </div>
+                <div class="content">
+                    {{ .Content }}
+                </div>
+            </div>
+
+            <!-- Table of Contents (TOC) Area -->
+            <aside class="project-toc">
+                <h2>Contents</h2>
+                {{ .TableOfContents }} <!-- Hugo automatically generates the TOC -->
+            </aside>
+        </div>
+    </section>
+</div>
+<script src="/js/navbar-height.js"></script>
+
+{{ end }}
