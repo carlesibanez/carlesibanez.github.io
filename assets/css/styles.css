@@ -966,6 +966,23 @@ li {
     margin-bottom: 20px;
 }
 
+.content img {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 15px;
+    /* Center the image */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.content p > code {
+    background-color: #9c9c9c; /* Or whichever shade of pink tickles your fancy */
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+
 .project-toc {
     width: 20%; /* TOC area */
     padding-left: 10px;
